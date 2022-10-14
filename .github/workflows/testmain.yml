@@ -1,0 +1,20 @@
+name: testmain
+on:
+  workflow_dispatch:
+  pull_request:
+    branches:
+      - main
+      - sdk-preview
+    paths:
+      - .github/workflows/**
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+    - name: create asset
+      run: |
+          source "${{ github.workspace }}/infra/sdk_helpers.sh";
+          source "${{ github.workspace }}/infra/init_environment.sh";
+          az ml registry create -f resources/registry/registry.yml -n $registryname
+      env:
+        registryname: DemoRegistry${{ date +%s }}
