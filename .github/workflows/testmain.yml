@@ -15,6 +15,5 @@ jobs:
       run: |
           source "${{ github.workspace }}/infra/sdk_helpers.sh";
           source "${{ github.workspace }}/infra/init_environment.sh";
-          az ml registry create -f resources/registry/registry.yml -n $registryname
-      env:
-        registryname: "DemoRegistry${{ date +%s }}"
+          echo ::set-env name=registryname::$(date +%s)
+          az ml registry create -f resources/registry/registry.yml -n ${{ env.registryname }}
