@@ -14,5 +14,4 @@ jobs:
     - name: create asset
       run: |
           echo "$(date +%s)"
-          echo $(date +%s)
-          az ml registry create -f resources/registry/registry.yml -n $(date +%s)
+          echo DemoRegistry$(date +%s)
