@@ -14,5 +14,5 @@ jobs:
     - name: create asset
       run: |
           echo ::set-env name=registryname::$(date +%s)
-          echo "${{ env.registryname }}"
-          az ml registry create -f resources/registry/registry.yml -n ${{ env.registryname }}
+          echo "$(date +%s)"
+          az ml registry create -f resources/registry/registry.yml -n $(date +%s)
